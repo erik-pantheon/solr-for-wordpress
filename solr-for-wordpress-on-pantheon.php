@@ -486,7 +486,7 @@ function s4wp_load_blog_all($blogid) {
 
 function s4wp_handle_modified($post_id) {
     global $current_blog;
- 
+
     $post_info = get_post($post_id);
 
          $plugin_s4wp_settings = s4wp_get_option();
@@ -1203,7 +1203,7 @@ function s4wp_options_load() {
 function s4wp_options_init() {
     error_reporting(E_ERROR);
     ini_set('display_errors', false);
-    
+
     register_setting('s4w-options-group', 'plugin_s4wp_settings', 's4wp_sanitise_options');
 }
 
@@ -1212,31 +1212,31 @@ function s4wp_options_init() {
  * @param $options array of s4w settings options
  * @return $options sanitised values
  */
-function s4wp_sanitise_options($options) {
-    $options['s4wp_index_pages'] = absint($options['s4wp_index_pages']);
-    $options['s4wp_index_posts'] = absint($options['s4wp_index_posts']);
-    $options['s4wp_index_comments'] = absint($options['s4wp_index_comments']);
-    $options['s4wp_delete_page'] = absint($options['s4wp_delete_page']);
-    $options['s4wp_delete_post'] = absint($options['s4wp_delete_post']);
-    $options['s4wp_private_page'] = absint($options['s4wp_private_page']);
-    $options['s4wp_private_post'] = absint($options['s4wp_private_post']);
-    $options['s4wp_output_info'] = absint($options['s4wp_output_info']);
-    $options['s4wp_output_pager'] = absint($options['s4wp_output_pager']);
-    $options['s4wp_output_facets'] = absint($options['s4wp_output_facets']);
-    $options['s4wp_exclude_pages'] = s4wp_filter_str2list($options['s4wp_exclude_pages']);
-    $options['s4wp_num_results'] = absint($options['s4wp_num_results']);
-    $options['s4wp_cat_as_taxo'] = absint($options['s4wp_cat_as_taxo']);
-    $options['s4wp_max_display_tags'] = absint($options['s4wp_max_display_tags']);
-    $options['s4wp_facet_on_categories'] = absint($options['s4wp_facet_on_categories']);
-    $options['s4wp_facet_on_tags'] = absint($options['s4wp_facet_on_tags']);
-    $options['s4wp_facet_on_author'] = absint($options['s4wp_facet_on_author']);
-    $options['s4wp_facet_on_type'] = absint($options['s4wp_facet_on_type']);
-    $options['s4wp_index_all_sites'] = absint($options['s4wp_index_all_sites']);
-    $options['s4wp_connect_type'] = wp_filter_nohtml_kses($options['s4wp_connect_type']);
-    $options['s4wp_index_custom_fields'] = s4wp_filter_str2list($options['s4wp_index_custom_fields']);
-    $options['s4wp_facet_on_custom_fields'] = s4wp_filter_str2list($options['s4wp_facet_on_custom_fields']);
-    return $options;
-}
+ function s4wp_sanitise_options($options) {
+     $options['s4wp_index_pages'] = absint($options['s4wp_index_pages']);
+     $options['s4wp_index_posts'] = absint($options['s4wp_index_posts']);
+     $options['s4wp_index_comments'] = absint($options['s4wp_index_comments']);
+     $options['s4wp_delete_page'] = absint($options['s4wp_delete_page']);
+     $options['s4wp_delete_post'] = absint($options['s4wp_delete_post']);
+     $options['s4wp_private_page'] = absint($options['s4wp_private_page']);
+     $options['s4wp_private_post'] = absint($options['s4wp_private_post']);
+     $options['s4wp_output_info'] = absint($options['s4wp_output_info']);
+     $options['s4wp_output_pager'] = absint($options['s4wp_output_pager']);
+     $options['s4wp_output_facets'] = absint($options['s4wp_output_facets']);
+     $options['s4wp_exclude_pages'] = $options['s4wp_exclude_pages'];
+     $options['s4wp_num_results'] = absint($options['s4wp_num_results']);
+     $options['s4wp_cat_as_taxo'] = absint($options['s4wp_cat_as_taxo']);
+     $options['s4wp_max_display_tags'] = absint($options['s4wp_max_display_tags']);
+     $options['s4wp_facet_on_categories'] = absint($options['s4wp_facet_on_categories']);
+     $options['s4wp_facet_on_tags'] = absint($options['s4wp_facet_on_tags']);
+     $options['s4wp_facet_on_author'] = absint($options['s4wp_facet_on_author']);
+     $options['s4wp_facet_on_type'] = absint($options['s4wp_facet_on_type']);
+     $options['s4wp_index_all_sites'] = absint($options['s4wp_index_all_sites']);
+     $options['s4wp_connect_type'] = wp_filter_nohtml_kses($options['s4wp_connect_type']);
+     $options['s4wp_index_custom_fields'] = $options['s4wp_index_custom_fields'];
+     $options['s4wp_facet_on_custom_fields'] = $options['s4wp_facet_on_custom_fields'];
+     return $options;
+ }
 
 function s4wp_filter_str2list_numeric($input) {
     $final = array();
@@ -1597,7 +1597,7 @@ add_action('admin_menu', 's4wp_add_pages');
 add_action('admin_init', 's4wp_options_init');
 add_action('widgets_init', 's4wp_mlt_widget');
 add_action('wp_enqueue_scripts', 's4wp_autosuggest_head');
-add_action('admin_enqueue_scripts', 's4wp_admin_head'); 
+add_action('admin_enqueue_scripts', 's4wp_admin_head');
 add_filter( 'plugin_action_links', 's4wp_plugin_settings_link', 10, 2 );
 add_action('wp_ajax_solr_options','s4wp_options_load');
 
